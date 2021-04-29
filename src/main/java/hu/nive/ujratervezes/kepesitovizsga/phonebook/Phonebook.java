@@ -15,22 +15,13 @@ public class Phonebook {
     public void exportPhonebook(Map<String, String> contacts, String output) {
         parametersValidator(contacts, output);
         try (BufferedWriter writer = Files.newBufferedWriter(Path.of(output))) {
-            List<String> temp =contactsToStringList(contacts);
-            for (int i = 0; i < temp.size(); i++) {
-                writer.write(temp.get(i));
+            for (Map.Entry<String, String> entry : contacts.entrySet()) {
+                writer.write(entry.getKey() + ": " + entry.getValue());
                 writer.write("\n");
             }
         } catch (IOException ioe) {
             throw new IllegalStateException("Can not write in to the file", ioe);
         }
-    }
-
-    private List<String> contactsToStringList(Map<String, String> contacts) {
-        List<String> temp =new ArrayList<>();
-        for (Map.Entry<String, String> entry : contacts.entrySet()) {
-            temp.add(entry.getKey() + ": " + entry.getValue());
-        }
-        return temp;
     }
 
     private void parametersValidator(Map<String, String> contacts, String output) {
