@@ -2,9 +2,9 @@ package hu.nive.ujratervezes.kepesitovizsga.army;
 
 public abstract class MilitaryUnit {
 
-    protected int health;
-    protected int damage;
-    protected boolean hasArmor;
+     int health;
+     int damage;
+     boolean hasArmor;
 
     public int doDamage() {
         return damage;
